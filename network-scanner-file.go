@@ -70,12 +70,18 @@ func main() {
 
 	vge.Wait()
 	time.Sleep(4 * time.Second)
+	webhookUrl := "https://hooks.slack.com/services/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"
+	err = SendSlackNotification(webhookUrl, "Scanning Results")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	for j := 0; j < count.x; j++ {
-		webhookUrl := "https://hooks.slack.com/services/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"
 		err := SendSlackNotification(webhookUrl, <-c)
 		if err != nil {
 			log.Fatal(err)
 		}
+
 	}
 }
 
