@@ -70,8 +70,10 @@ func main() {
 
 	vge.Wait()
 	time.Sleep(4 * time.Second)
-	webhookUrl := "https://hooks.slack.com/services/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"
-	err = SendSlackNotification(webhookUrl, "Scanning Results")
+	webhookUrl := "https://hooks.slack.com/services/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"
+	t0 := time.Now().String()[:25]
+	full := fmt.Sprintf("Scanning Results  => %s", t0)
+	err = SendSlackNotification(webhookUrl, full)
 	if err != nil {
 		log.Fatal(err)
 	}

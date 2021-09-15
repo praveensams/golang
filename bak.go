@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type Sam struct {
 	a int
@@ -15,4 +18,6 @@ func main() {
 	go k.add()
 	go k.add()
 	fmt.Println(k)
+	t0 := time.Now().String()[:25]
+	fmt.Println(t0)
 }
