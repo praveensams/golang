@@ -31,6 +31,9 @@ func (count *S) validate(i int, se string, c chan string) {
 }
 
 func main() {
+	if len(os.Args) <= 1 {
+		panic("No arguement passed")
+	}
 	count := &S{
 		x: 0,
 	}
