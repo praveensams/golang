@@ -1,0 +1,14 @@
+cat ./rules/fcdr-dlr-alerts/smscgw_fcdr_dlr_zain_42.yaml | perl -ane 'if(/^realert/) {print "realert\:\n" ; $x=1;} elsif ($x==1) { print "  minutes: 60";$x=0;} else {print}'
+
+
+
+find .  -type f | xargs grep -il 'fcdr' | xargs grep -il 'realert' | while read a
+do
+cat $a | perl -ane 'if(/^realert/) {print "realert\:\n" ; $x=1;} elsif ($x==1) { print "  minutes: 60\n";$x=0;} else {print}' > /tmp/logs
+echo -e "\n#########################################################################################\n"
+echo $a
+sleep 1 
+cat /tmp/logs > $a
+sleep 1
+echo -e "\n#########################################################################################\n"
+done
