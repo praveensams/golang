@@ -1,0 +1,24 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: portscanning
+  namespace: {{ .Values.namespace }}
+spec:
+  concurrencyPolicy: Forbid 
+  schedule: '*/30 * * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: portscanning
+          restartPolicy: Never
+          containers:
+            - name: portscanning
+              image: {{ .Values.image }}
+              volumeMounts:
+              - name: cronjob-script-volume
+                mountPath: /mnt
+          volumes:
+          - name: cronjob-script-volume
+            configMap:
+              name: cronjob-script

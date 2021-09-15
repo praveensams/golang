@@ -1,0 +1,12 @@
+# Default values for pod-restart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+namespace: "portscanner"
+
+image:  759109558351.dkr.ecr.me-south-1.amazonaws.com/rds-exporter:portscanner-5
+
+url:
+  - www.google.com
+  - www.yahoo.com
