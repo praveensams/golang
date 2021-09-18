@@ -10,6 +10,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"strings"
 	"sync"
 	"time"
 )
@@ -70,19 +71,20 @@ func main() {
 
 	vge.Wait()
 	time.Sleep(4 * time.Second)
-	webhookUrl := "https://hooks.slack.com/services/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"
+	webhookUrl := "https://hooks.slack.com/services/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"
 	t0 := time.Now().String()[:25]
 	full := fmt.Sprintf("Scanning Results  => %s", t0)
 	err = SendSlackNotification(webhookUrl, full)
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	lists := make([]string, 100)
 	for j := 0; j < count.x; j++ {
-		err := SendSlackNotification(webhookUrl, <-c)
-		if err != nil {
-			log.Fatal(err)
-		}
+		lists = append(lists, <-c)
+	}
+	err = SendSlackNotification(webhookUrl, strings.Join(lists, "\n"))
+	if err != nil {
+		log.Fatal(err)
 
 	}
 }
