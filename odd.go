@@ -32,7 +32,6 @@ func main() {
 	}
 
 	time.Sleep(3 * time.Second)
-	fmt.Println(d)
 	for i := 0; i < d.a; i++ {
 		je, ok := <-ch
 		if !ok {
